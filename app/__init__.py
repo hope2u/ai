@@ -1,9 +1,8 @@
 import os
-from flask import Flask
+from flask import flask
 
-app = Flask(__name__)
+app = flask(__name__)
 
 app.config['SECRET_KEY'] = 'any string works here'
 
-from app import views
-
+from app import views.auto.py

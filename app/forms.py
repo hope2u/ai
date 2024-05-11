@@ -1,11 +1,23 @@
-from flask_wtf import FlaskForm
-from wtforms import FileField, SubmitField, BooleanField 
-from wtforms.validators import DataRequired 
-	
-class UploadForm(FlaskForm):
-    file = FileField('Upload an image file for the evaluation', validators=[DataRequired()])
-    # white_background = BooleanField('Check if the background is white', default=False)
-    submit = SubmitField('Upload')
-    
-class ResultForm(FlaskForm):
-    submit = SubmitField('Ok')
+import os
+
+from flask import render_template, request, flash
+
+from app import app
+
+from app.forms import (UploadForm, ResultForm)
+
+from datetime import datetime
+
+from werkzeug.utils import secure_filename
+
+import numpy as np
+
+# from keras_preprocessing import image
+
+from keras.utils import img_to_array
+
+from keras.models import load_model
+
+from PIL import Image
+
+import cv2
